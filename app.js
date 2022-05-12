@@ -9,7 +9,7 @@ const promptUser = () => {
             name: 'name',
             message: 'What is your name? (Required)',
             validate: nameInput => {
-                if(nameInput) {
+                if (nameInput) {
                     return true;
                 } else {
                     console.log('Please enter your name!');
@@ -22,7 +22,7 @@ const promptUser = () => {
             name: 'github',
             message: 'Enter your GitHub Username (Required)',
             validate: gitHubName => {
-                if(gitHubName) {
+                if (gitHubName) {
                     return true;
                 } else {
                     console.log('Please enter your GitHub Username!');
@@ -50,7 +50,7 @@ const promptUser = () => {
         }
     ]);
 };
-   
+
 // promptUser().then(answers => console.log(answers));
 
 const promptProject = (portfolioData) => {
@@ -124,7 +124,7 @@ Add a New Project
             message: 'Would you like to enter another project?',
             default: false
         }
-        ])
+    ])
         .then(projectData => {
             portfolioData.projects.push(projectData);
             if (projectData.confirmAddProject) {
@@ -135,15 +135,26 @@ Add a New Project
         });
 };
 
-    promptUser()
-        .then(promptProject)
-        .then(portfolioData => {
-            const pageHTML = generatePage(portfolioData);
+promptUser()
+    .then(promptProject)
+    .then(portfolioData => {
+        const pageHTML = generatePage(portfolioData);
 
 
-        fs.writeFile('./index.html', pageHTML, err => {
-            if (err) throw new Error(err);
+        fs.writeFile('./dist/index.html', pageHTML, err => {
+            if (err) {
+                console.log(err);
+                return;
+            }
             console.log('Page Created! Check out index.html in this directory to see it!');
+
+            fs.copyFile('./src/style.css', './dist/style.css', err => {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                console.log('Style sheet copied successfully!');
+            });
         });
     });
 
