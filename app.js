@@ -31,21 +31,34 @@ const promptUser = () => {
             }
         },
         {
+            type: 'confirm',
+            name: 'confirmAbout',
+            message: 'Would you like to enter some information about yourself for an "About" section?',
+            default: true
+        },
+        {
             type: 'input',
             name: 'about',
-            message: 'Provide some information about yourself:'
+            message: 'Provide some information about yourself:',
+            when: ({ confirmAbout }) => {
+                if (confirmAbout) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         }
     ]);
 };
    
-promptUser().then(answers => console.log(answers));
+// promptUser().then(answers => console.log(answers));
 
 const promptProject = (portfolioData) => {
     // initialiazing function with empty array
     console.log(`
-    =================
-    Add a New Project
-    =================
+=================
+Add a New Project
+=================
     `);
 
     // if there's no 'projects' array property, create one
@@ -58,8 +71,8 @@ const promptProject = (portfolioData) => {
             type: 'input',
             name: 'name',
             message: 'What is the name of your project? (Required)',
-            validate: projectName => {
-                if (projectName) {
+            validate: nameInput => {
+                if (nameInput) {
                     return true;
                 } else {
                     console.log('Please enter a name for your project!');
@@ -111,6 +124,7 @@ const promptProject = (portfolioData) => {
             message: 'Would you like to enter another project?',
             default: false
         }
+        ])
         .then(projectData => {
             portfolioData.projects.push(projectData);
             if (projectData.confirmAddProject) {
@@ -118,11 +132,10 @@ const promptProject = (portfolioData) => {
             } else {
                 return portfolioData;
             }
-        })
-    ]);
+        });
 };
 
-promptProject()
+promptUser()
     .then(promptProject)
     .then(portfolioData => {
         console.log(portfolioData);
