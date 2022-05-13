@@ -10,7 +10,7 @@ Things I've learned while creating this project:
   - Or Const/Let
 
 ## Table of Contents
-- [Challenges](#Challenges faced)
+- [Challenges](#Challenges)
 - [Installation](#Installation)
 - [Screenshots](#Screenshots)
 - [Collaborators](#Collaborators)
