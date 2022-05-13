@@ -10,9 +10,13 @@ Things I've learned while creating this project:
   - Or Const/Let
 
 ## Table of Contents
-- [Challenges](#challenges)
+- [Challenges](#Challenges faced)
+- [Installation](#Installation)
+- [Screenshots](#Screenshots)
+- [Collaborators](#Collaborators)
+- [License](#License)
 
-Challenges faced:
+## Challenges faced:
 - Bugs where I did a callback on the wrong function and had things incorrectly popping up.
 - Had another challenge where my app was not allowing the user to type anything after being called.  
   - This issue was resolved when I did another pass through my code to see the issue, and found that I was calling the wrong function.
