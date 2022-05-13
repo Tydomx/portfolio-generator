@@ -37,4 +37,3 @@ Challenges faced:
 - Just me:) Tydomx (Michael)
 
 ## License
-MIT License
